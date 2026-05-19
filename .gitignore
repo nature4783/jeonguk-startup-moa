@@ -50,3 +50,6 @@ jeong_automation_dashboard/data/
 
 # Managed by its own Git repository
 jeong_automation_dashboard/
+
+# Local backup bundle; keep in Drive/OneDrive/external storage, not Git
+IMPORTANT_BACKUP/
