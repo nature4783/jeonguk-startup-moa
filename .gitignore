@@ -53,3 +53,4 @@ jeong_automation_dashboard/
 
 # Local backup bundle; keep in Drive/OneDrive/external storage, not Git
 IMPORTANT_BACKUP/
+LAPTOP_RESTORE_PACKAGE/
