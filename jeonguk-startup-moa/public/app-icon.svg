@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="전국창업모아">
+  <rect width="512" height="512" rx="112" fill="#0647c7"/>
+  <circle cx="378" cy="128" r="56" fill="#7fe7d4" opacity="0.92"/>
+  <circle cx="112" cy="390" r="76" fill="#0b66e4" opacity="0.9"/>
+  <path d="M118 318h276v46H118z" fill="#fff" opacity="0.18"/>
+  <path d="M142 188h228c12 0 22 10 22 22v114H120V210c0-12 10-22 22-22Z" fill="#fff"/>
+  <path d="M154 228h204v34H154z" fill="#0647c7"/>
+  <path d="M172 292h44v78h-44zM234 292h44v78h-44zM296 292h44v78h-44z" fill="#d9e8ff"/>
+  <text x="256" y="128" text-anchor="middle" font-family="Arial, 'Malgun Gothic', sans-serif" font-size="64" font-weight="900" fill="#fff">전국</text>
+  <text x="256" y="438" text-anchor="middle" font-family="Arial, 'Malgun Gothic', sans-serif" font-size="54" font-weight="900" fill="#fff">창업모아</text>
+</svg>
