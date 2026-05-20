@@ -36,7 +36,7 @@ function getPriority(listing: PublicListing) {
   if (value >= 8) {
     return {
       label: "우선 검토",
-      body: "수익 범위와 매출 구간이 좋은 편",
+      body: "수익 범위와 매출 구간이 좋은 매물",
       percent: 88,
       tone: "bg-[#0647c7]",
     };
@@ -75,7 +75,7 @@ export function ListingCard({ listing }: ListingCardProps) {
       tone: "bg-[#eef4ff] text-[#0647c7]",
     },
     {
-      label: "예상 순수익",
+      label: "예상 수익",
       value: listing.estimatedProfitRange,
       icon: Banknote,
       tone: "bg-[#ecfdf5] text-[#047857]",
@@ -87,7 +87,7 @@ export function ListingCard({ listing }: ListingCardProps) {
       tone: "bg-[#fff7ed] text-[#c2410c]",
     },
     {
-      label: "월임대료",
+      label: "임대료",
       value: listing.rentRange,
       icon: Building2,
       tone: "bg-[#f5f3ff] text-[#6d28d9]",
@@ -100,7 +100,7 @@ export function ListingCard({ listing }: ListingCardProps) {
         <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
           <Image
             src={listing.imageUrl}
-            alt={`${listing.category} 매장 이미지`}
+            alt={`${listing.regionLabel} ${listing.category} 매장 이미지`}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover"
@@ -109,7 +109,7 @@ export function ListingCard({ listing }: ListingCardProps) {
           <div className="absolute left-3 top-3 flex items-center gap-2">
             <span className="inline-flex items-center gap-1 rounded-full bg-white/95 px-3 py-1.5 text-xs font-black text-[#0647c7] shadow-sm">
               <BadgeCheck className="size-3.5" aria-hidden />
-              검수 공개
+              검증 공개
             </span>
             <span className="rounded-full bg-black/45 px-3 py-1.5 text-xs font-black text-white backdrop-blur">
               {listing.publicCode}
@@ -155,7 +155,7 @@ export function ListingCard({ listing }: ListingCardProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
+        <dl className="grid grid-cols-2 gap-2">
           {metrics.map((metric) => {
             const Icon = metric.icon;
             return (
@@ -179,7 +179,7 @@ export function ListingCard({ listing }: ListingCardProps) {
               </div>
             );
           })}
-        </div>
+        </dl>
 
         <div className="rounded-[1rem] bg-[#071d49] p-4 text-white">
           <div className="flex items-start justify-between gap-3">
@@ -205,16 +205,16 @@ export function ListingCard({ listing }: ListingCardProps) {
         <div className="grid gap-2 rounded-[1rem] bg-[#f6f8fb] p-3">
           <p className="flex items-center gap-2 text-sm font-black text-neutral-950">
             <FileCheck2 className="size-4 text-[#0647c7]" aria-hidden />
-            검수 포인트
+            검증 포인트
           </p>
           <div className="grid gap-2 text-xs font-bold text-neutral-600">
             <span className="flex items-center gap-2">
               <EyeOff className="size-4 text-neutral-400" aria-hidden />
-              상세주소·점주 연락처 비공개
+              상세주소·점주 연락처는 비공개
             </span>
             <span className="flex items-center gap-2">
               <ShieldCheck className="size-4 text-neutral-400" aria-hidden />
-              매출·권리금·순수익 범위형 공개
+              매출·권리금·순수익 범위 공개
             </span>
             <span className="flex items-center gap-2">
               <Store className="size-4 text-neutral-400" aria-hidden />

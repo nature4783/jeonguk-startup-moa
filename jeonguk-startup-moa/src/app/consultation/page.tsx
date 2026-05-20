@@ -25,10 +25,15 @@ export default async function ConsultationPage({
       <main className="mx-auto grid w-full max-w-5xl gap-6 px-4 pb-44 pt-6 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <section className="rounded-md bg-neutral-950 p-6 text-white shadow-sm">
           <p className="text-sm font-black text-amber-300">REQUEST</p>
-          <h1 className="mt-2 text-3xl font-black">상담 신청</h1>
+          <h1 className="mt-2 text-3xl font-black">창업 상담 신청</h1>
           <div className="mt-8 space-y-4 text-sm leading-6 text-stone-300">
-            <p>상담 신청, 상세자료 요청, 희망 조건 남기기를 같은 폼에서 처리합니다.</p>
-            <p>상담 전에는 상세주소와 연락처를 공개하지 않는 흐름으로 설계했습니다.</p>
+            <p>
+              상담 신청, 상세자료 요청, 희망 조건 등록을 한 번에 접수합니다.
+            </p>
+            <p>
+              상담 전에는 상세주소와 점주 연락처를 공개하지 않는 방식으로
+              안전하게 운영합니다.
+            </p>
           </div>
           {listing ? (
             <div className="mt-8 rounded-md bg-white p-4 text-neutral-950">
@@ -47,7 +52,7 @@ export default async function ConsultationPage({
           className="rounded-md border border-stone-200 bg-white p-5 shadow-sm"
         >
           <input type="hidden" name="listingId" value={listingId} />
-          <input type="hidden" name="redirectTo" value="/consultation?submitted=1" />
+          <input type="hidden" name="redirectTo" value="/consult?submitted=1" />
           <div className="grid gap-4">
             {submitted ? (
               <div className="rounded-md bg-[#eefdf7] p-4 text-sm font-black text-[#00866d]">

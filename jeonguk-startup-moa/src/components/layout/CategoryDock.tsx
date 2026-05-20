@@ -6,6 +6,7 @@ import {
   BookOpenText,
   BriefcaseBusiness,
   MessageCircle,
+  Sparkles,
   Store,
   type LucideIcon,
 } from "lucide-react";
@@ -18,15 +19,16 @@ type DockItem = {
 };
 
 const dockItems: DockItem[] = [
-  { href: "/community", label: "속닥방", icon: MessageCircle, active: ["/community"] },
+  { href: "/community", label: "질문방", icon: MessageCircle, active: ["/community"] },
   {
-    href: "/sectors",
-    label: "창업메뉴",
+    href: "/regions",
+    label: "지역별",
     icon: BriefcaseBusiness,
-    active: ["/sectors", "/roadmap", "/partners"],
+    active: ["/regions", "/sectors", "/roadmap", "/partners"],
   },
   { href: "/guides", label: "가이드", icon: BookOpenText, active: ["/guides"] },
-  { href: "/listings", label: "검수매물", icon: Store, active: ["/listings"] },
+  { href: "/ai-recommend", label: "AI추천", icon: Sparkles, active: ["/ai-recommend"] },
+  { href: "/listings", label: "실매물", icon: Store, active: ["/listings"] },
 ];
 
 export function CategoryDock() {

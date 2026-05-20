@@ -15,7 +15,7 @@ const sortOptions: { value: ListingSort; label: string }[] = [
   { value: "latest", label: "최신순" },
   { value: "sales-desc", label: "월매출 높은순" },
   { value: "premium-asc", label: "권리금 낮은순" },
-  { value: "profit-desc", label: "순수익 높은순" },
+  { value: "profit-desc", label: "예상 수익 높은순" },
 ];
 
 function SelectField({
@@ -56,19 +56,19 @@ function FilterFields({ current = {} }: FilterBarProps) {
         <input
           name="query"
           defaultValue={current.query ?? ""}
-          placeholder="지역, 업종, 브랜드군"
+          placeholder="지역, 업종, 브랜드명"
           className="h-11 w-full rounded-md border border-stone-200 bg-white px-3 text-sm font-bold text-neutral-900 outline-none placeholder:text-neutral-400 focus:border-neutral-900"
         />
       </label>
       <SelectField
         name="sido"
-        label="시/도"
+        label="시도"
         value={current.sido}
         options={filterOptions.sidos}
       />
       <SelectField
         name="sigungu"
-        label="시/구"
+        label="시군구"
         value={current.sigungu}
         options={filterOptions.sigungus}
       />
@@ -80,7 +80,7 @@ function FilterFields({ current = {} }: FilterBarProps) {
       />
       <SelectField
         name="brandGroup"
-        label="브랜드군"
+        label="브랜드 계열"
         value={current.brandGroup}
         options={filterOptions.brandGroups}
       />
@@ -98,7 +98,7 @@ function FilterFields({ current = {} }: FilterBarProps) {
       />
       <SelectField
         name="estimatedProfitRange"
-        label="예상 순수익"
+        label="예상 수익"
         value={current.estimatedProfitRange}
         options={filterOptions.estimatedProfitRanges}
       />
@@ -127,13 +127,13 @@ function ActiveChips({ current = {} }: FilterBarProps) {
     ["브랜드", current.brandGroup],
     ["월매출", current.monthlySalesRange],
     ["권리금", current.premiumRange],
-    ["순수익", current.estimatedProfitRange],
+    ["수익", current.estimatedProfitRange],
   ].filter(([, value]) => value);
 
   if (!chips.length) {
     return (
       <div className="flex gap-2 overflow-x-auto pb-1">
-        {["지역", "업종", "월매출", "권리금", "순수익"].map((label) => (
+        {["지역", "업종", "월매출", "권리금", "수익"].map((label) => (
           <span
             key={label}
             className="shrink-0 rounded-full border border-stone-200 bg-white px-3 py-2 text-xs font-black text-neutral-600"
@@ -168,7 +168,7 @@ export function FilterBar({ current = {} }: FilterBarProps) {
       >
         <div className="mb-4 flex items-center gap-2">
           <SlidersHorizontal className="size-4 text-neutral-900" aria-hidden />
-          <h2 className="text-sm font-black text-neutral-950">검색/필터/정렬</h2>
+          <h2 className="text-sm font-black text-neutral-950">매물 필터와 정렬</h2>
         </div>
         <FilterFields current={current} />
         <div className="mt-4 flex flex-wrap gap-2">
@@ -197,7 +197,7 @@ export function FilterBar({ current = {} }: FilterBarProps) {
             <input
               name="query"
               defaultValue={current.query ?? ""}
-              placeholder="지역, 업종, 브랜드군"
+              placeholder="지역, 업종, 브랜드명"
               className="h-11 w-full min-w-0 rounded-md border border-stone-200 bg-stone-50 pl-9 pr-3 text-sm font-bold text-neutral-900 outline-none placeholder:text-neutral-400 focus:border-neutral-900"
             />
           </label>

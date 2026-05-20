@@ -52,14 +52,14 @@ export function ListingActions({
           비교 담기
         </button>
         <a
-          href={`/consultation?listingId=${listingId}&type=consultation`}
+          href={`/consult?listingId=${listingId}&type=consultation`}
           className={`${baseClass} ${primaryClass}`}
         >
           <MessageSquareText className="size-4" aria-hidden />
           상담 신청
         </a>
         <a
-          href={`/consultation?listingId=${listingId}&type=detail_request`}
+          href={`/consult?listingId=${listingId}&type=detail_request`}
           className={`${baseClass} ${secondaryClass}`}
         >
           <FileText className="size-4" aria-hidden />

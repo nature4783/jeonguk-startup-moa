@@ -4,8 +4,8 @@ import {
   BookOpen,
   Heart,
   House,
-  MessageCircle,
   Search,
+  Sparkles,
   Store,
   UserRound,
 } from "lucide-react";
@@ -15,14 +15,16 @@ const customerNav = [
   { href: "/roadmap", label: "로드맵" },
   { href: "/guides", label: "가이드" },
   { href: "/community", label: "커뮤니티" },
-  { href: "/listings", label: "검수매물" },
-  { href: "/consultation", label: "상담" },
+  { href: "/listings", label: "실매물" },
+  { href: "/regions", label: "지역별" },
+  { href: "/ai-recommend", label: "AI추천" },
+  { href: "/consult", label: "상담" },
 ];
 
 const mobileNav = [
   { href: "/", label: "홈", icon: House },
   { href: "/guides", label: "가이드", icon: BookOpen },
-  { href: "/community", label: "커뮤니티", icon: MessageCircle },
+  { href: "/ai-recommend", label: "추천", icon: Sparkles },
   { href: "/listings", label: "매물", icon: Store },
   { href: "/my", label: "마이", icon: UserRound },
 ];
@@ -31,13 +33,13 @@ export function AppHeader() {
   return (
     <>
       <header className="sticky top-0 z-30 bg-[#f3f6fb]/95 backdrop-blur">
-        <div className="mx-auto flex h-20 w-full max-w-[520px] items-center gap-3 px-5">
+        <div className="mx-auto flex h-20 w-full max-w-[520px] items-center gap-3 px-5 lg:max-w-7xl">
           <Link href="/" className="flex min-w-0 shrink items-center gap-2.5">
             <span className="grid size-12 shrink-0 place-items-center rounded-[1rem] bg-[#0647c7] text-white shadow-sm ring-1 ring-[#0b5cff]/20">
               <span className="text-center leading-none">
-                <span className="block text-[0.72rem] font-black">전국</span>
+                <span className="block text-[0.72rem] font-black">창업</span>
                 <span className="mt-0.5 block text-[0.62rem] font-black">
-                  창업모아
+                  모아
                 </span>
               </span>
             </span>
@@ -53,7 +55,7 @@ export function AppHeader() {
             <Search className="size-4 text-neutral-500" aria-hidden />
             <input
               name="query"
-              placeholder="창업 질문, 업종 정보, 검수 매물 검색"
+              placeholder="지역, 업종, 브랜드, 창업 매물 검색"
               className="h-full flex-1 bg-transparent text-sm font-bold text-neutral-900 outline-none placeholder:text-neutral-400"
             />
           </form>
@@ -74,8 +76,8 @@ export function AppHeader() {
             <Link
               href="/listings"
               className="hidden size-11 place-items-center rounded-full text-neutral-900 hover:bg-white md:grid lg:hidden"
-              aria-label="검수 매물 검색"
-              title="검수 매물 검색"
+              aria-label="창업 매물 검색"
+              title="창업 매물 검색"
             >
               <Search className="size-7" aria-hidden />
             </Link>

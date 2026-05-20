@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -8,17 +9,26 @@ import {
   ChevronRight,
   ClipboardCheck,
   Heart,
-  Megaphone,
   MessageCircle,
   Search,
   ShieldCheck,
+  Sparkles,
   Store,
   UsersRound,
   type LucideIcon,
 } from "lucide-react";
 import { AppHeader } from "@/components/layout/AppHeader";
 import { communityPosts } from "@/lib/community";
-import { getPublicListings } from "@/lib/public-listings";
+import { getListingStats, getPublicListings } from "@/lib/public-listings";
+
+export const metadata: Metadata = {
+  title: "전국창업모아 | 창업 매물·AI추천·상담 신청",
+  description:
+    "전국창업모아에서 실매물, AI 창업 매물 추천, 창업 가이드와 상담 신청을 한 번에 확인하세요.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 type Shortcut = {
   title: string;
@@ -35,15 +45,15 @@ type TopicCard = {
 };
 
 const searchChips = [
-  { label: "속닥방", href: "/community" },
-  { label: "상권", href: "/community" },
-  { label: "지원사업", href: "/guides" },
-  { label: "검수매물", href: "/listings" },
+  { label: "창업 질문", href: "/community" },
+  { label: "상권 분석", href: "/community" },
+  { label: "창업 가이드", href: "/guides" },
+  { label: "양도양수 매물", href: "/listings" },
 ];
 
 const shortcuts: Shortcut[] = [
   {
-    title: "속닥방",
+    title: "질문방",
     href: "/community",
     icon: MessageCircle,
     accent: "bg-[#00a7b5]",
@@ -55,13 +65,13 @@ const shortcuts: Shortcut[] = [
     accent: "bg-[#0b66e4]",
   },
   {
-    title: "지원사업",
-    href: "/guides",
-    icon: Megaphone,
-    accent: "bg-[#ffaf21]",
+    title: "AI추천",
+    href: "/ai-recommend",
+    icon: Sparkles,
+    accent: "bg-[#8b5cf6]",
   },
   {
-    title: "검수매물",
+    title: "실매물",
     href: "/listings",
     icon: Store,
     accent: "bg-[#5b5ce2]",
@@ -104,6 +114,7 @@ const guideCards = [
 export default function Home() {
   const listings = getPublicListings().slice(0, 2);
   const posts = communityPosts.slice(0, 3);
+  const stats = getListingStats();
 
   return (
     <>
@@ -117,49 +128,53 @@ export default function Home() {
                   Startup Moa
                 </p>
                 <h1 className="mt-3 text-[2.35rem] font-black leading-[1.02]">
-                  창업,
+                  전국 창업 정보,
                   <span className="block text-[#7fe7d4]">
-                    감으로 하지 않게
+                    매물부터 상담까지
                   </span>
                 </h1>
+                <p className="mt-4 text-sm font-bold leading-6 text-white/72">
+                  실매물, AI추천, 창업 가이드와 상담 신청을 한곳에서
+                  확인하세요.
+                </p>
               </div>
               <Link
-                href="/community"
+                href="/ai-recommend"
                 className="grid size-11 shrink-0 place-items-center rounded-full bg-white/12 text-white ring-1 ring-white/15"
-                aria-label="커뮤니티로 이동"
+                aria-label="AI 추천으로 이동"
               >
                 <ArrowUpRight className="size-5" aria-hidden />
               </Link>
             </div>
 
-            <div className="mt-6 grid grid-cols-3 gap-2">
+            <dl className="mt-6 grid grid-cols-3 gap-2">
               {[
-                ["질문", "속닥방"],
-                ["정보", "가이드"],
-                ["자료", "검수매물"],
+                ["공개매물", `${stats.total}건`],
+                ["지역", `${stats.regions}곳`],
+                ["상담", "신청 가능"],
               ].map(([label, value]) => (
                 <div
                   key={label}
                   className="rounded-[1.05rem] bg-white/[0.08] p-3 ring-1 ring-white/10"
                 >
-                  <p className="text-xs font-bold text-white/45">{label}</p>
-                  <p className="mt-1 text-sm font-black">{value}</p>
+                  <dt className="text-xs font-bold text-white/45">{label}</dt>
+                  <dd className="mt-1 text-sm font-black">{value}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
         </section>
 
         <section className="mt-4 px-5">
           <div className="rounded-[1.35rem] bg-white p-3 shadow-sm ring-1 ring-[#dbe5f7]">
             <Link
-              href="/community"
+              href="/listings"
               className="flex h-12 items-center gap-3 rounded-[1rem] bg-[#f1f5fb] px-4 text-base font-black text-neutral-500"
             >
               <span className="grid size-9 place-items-center rounded-full bg-[#0b66e4] text-white">
                 <Search className="size-5" aria-hidden />
               </span>
-              무엇이 궁금하세요?
+              지역, 업종, 예산으로 창업 매물 찾기
             </Link>
 
             <div className="no-scrollbar -mx-3 mt-3 flex gap-2 overflow-x-auto px-3">
@@ -205,7 +220,7 @@ export default function Home() {
         <section id="talk" className="mt-7 scroll-mt-28 px-5">
           <SectionTitle
             eyebrow="Live Talk"
-            title="실시간 창업톡"
+            title="실시간 창업 질문"
             href="/community"
             linkLabel="더보기"
           />
@@ -229,7 +244,7 @@ export default function Home() {
                   </span>
                 </span>
                 <span className="shrink-0 rounded-full bg-[#f1f5fb] px-2.5 py-1 text-xs font-black text-neutral-500">
-                  {post.replies}
+                  답변 {post.replies}
                 </span>
               </Link>
             ))}
@@ -314,10 +329,10 @@ export default function Home() {
                 href="/community"
                 className="inline-flex h-12 items-center justify-center rounded-[1rem] bg-[#0b66e4] text-sm font-black text-white"
               >
-                속닥하기
+                질문하기
               </Link>
               <Link
-                href="/consultation?type=condition_request"
+                href="/consult?type=condition_request"
                 className="inline-flex h-12 items-center justify-center rounded-[1rem] bg-white text-sm font-black text-[#0b66e4] shadow-sm"
               >
                 상담 남기기
@@ -329,7 +344,7 @@ export default function Home() {
         <section id="listings" className="mt-7 scroll-mt-28 px-5">
           <SectionTitle
             eyebrow="Verified"
-            title="검수 매물"
+            title="실매물"
             href="/listings"
             linkLabel="보기"
           />
@@ -344,7 +359,7 @@ export default function Home() {
                 <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
                   <Image
                     src={listing.imageUrl}
-                    alt={`${listing.category} 매장`}
+                    alt={`${listing.regionLabel} ${listing.category} 매장`}
                     fill
                     sizes="208px"
                     className="object-cover"
@@ -352,7 +367,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   <div className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-xs font-black text-neutral-800">
                     <Heart className="size-3.5" aria-hidden />
-                    검수
+                    검증
                   </div>
                   <span className="absolute bottom-3 left-3 rounded-full bg-[#0b66e4] px-3 py-1.5 text-xs font-black text-white">
                     {listing.regionLabel}
@@ -363,7 +378,7 @@ export default function Home() {
                     {listing.category} 양도양수
                   </h3>
                   <p className="mt-1 line-clamp-1 text-sm font-bold text-neutral-500">
-                    순수익 {listing.estimatedProfitRange}
+                    예상 수익 {listing.estimatedProfitRange}
                   </p>
                 </div>
               </Link>

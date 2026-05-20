@@ -66,8 +66,9 @@ export const publicListings: PublicListing[] = [
     sizeRange: "20~30평",
     floorType: "1층",
     operationPeriodRange: "3년 이상",
-    summary: "오피스와 주거 수요가 함께 있는 상권의 카페 매물입니다.",
-    highlights: ["오전 유동인구", "배달 병행", "본사 교육 가능"],
+    summary:
+      "오피스와 주거 수요가 함께 있는 상권의 카페 매물입니다. 배달과 테이크아웃 수요를 함께 검토하기 좋습니다.",
+    highlights: ["역세권 유동인구", "배달 병행", "본사 교육 가능"],
     recommendedFor: ["카페 경험자", "부부 창업", "운영 안정성 선호"],
     imageUrl:
       "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80",
@@ -94,9 +95,10 @@ export const publicListings: PublicListing[] = [
     sizeRange: "15~25평",
     floorType: "1층",
     operationPeriodRange: "2~3년",
-    summary: "주거 밀집 지역에서 포장과 배달 비중이 높은 치킨 매물입니다.",
-    highlights: ["배달 수요", "저녁 피크", "장비 승계"],
-    recommendedFor: ["배달 운영 경험자", "소형 매장 선호", "야간 매출 집중"],
+    summary:
+      "주거 밀집 지역에서 포장과 배달 비중이 높은 치킨 매물입니다. 야간 운영 경험이 있는 예비 창업자에게 적합합니다.",
+    highlights: ["배달 수요", "대형 브랜드", "설비 양호"],
+    recommendedFor: ["배달 운영 경험자", "소형 매장 선호", "월간 매출 집중"],
     imageUrl:
       "https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=900&q=80",
     isPublic: true,
@@ -122,8 +124,9 @@ export const publicListings: PublicListing[] = [
     sizeRange: "10~20평",
     floorType: "1층",
     operationPeriodRange: "1~2년",
-    summary: "관광지와 생활 상권이 만나는 구역의 분식 매물입니다.",
-    highlights: ["간편식 수요", "점심 회전", "초보 교육 가능"],
+    summary:
+      "관광지와 생활 상권이 만나는 구역의 분식 매물입니다. 낮은 권리금으로 시작하려는 초보 창업자에게 적합합니다.",
+    highlights: ["간편식 수요", "자체 회전", "초보 교육 가능"],
     recommendedFor: ["소자본 창업", "초보 창업", "가족 운영"],
     imageUrl:
       "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=900&q=80",
@@ -135,7 +138,7 @@ export const publicListings: PublicListing[] = [
     rawListingId: "raw-9004",
     publicCode: "JM-2026-0004",
     title: "인천 연수구 무인점포 양도양수 매물",
-    brandGroup: "무인/자동화 브랜드",
+    brandGroup: "무인·자동화 브랜드",
     category: "무인점포",
     sido: "인천",
     sigungu: "연수구",
@@ -150,9 +153,10 @@ export const publicListings: PublicListing[] = [
     sizeRange: "10~15평",
     floorType: "1층",
     operationPeriodRange: "1년 미만",
-    summary: "상주 시간이 적은 자동화 운영 중심의 무인점포 매물입니다.",
+    summary:
+      "상주 시간이 적은 자동화 운영 중심의 무인점포 매물입니다. 부업형 창업과 운영 시간 절감을 원하는 분에게 적합합니다.",
     highlights: ["자동 결제", "상주 시간 낮음", "관리 동선 단순"],
-    recommendedFor: ["부업 창업", "자동화 선호", "운영 시간 제약"],
+    recommendedFor: ["부업 창업", "자동화 선호", "운영 시간 절약"],
     imageUrl:
       "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=80",
     isPublic: true,
@@ -162,12 +166,12 @@ export const publicListings: PublicListing[] = [
     id: "pl-1005",
     rawListingId: "raw-9005",
     publicCode: "JM-2026-0005",
-    title: "대전 유성구 편의점 양도양수 매물",
+    title: "대구 수성구 편의점 양도양수 매물",
     brandGroup: "대형 프랜차이즈",
     category: "편의점",
-    sido: "대전",
-    sigungu: "유성구",
-    regionLabel: "대전 유성구",
+    sido: "대구",
+    sigungu: "수성구",
+    regionLabel: "대구 수성구",
     monthlySalesRange: "5천만~1억",
     premiumRange: "5천만~1억",
     estimatedProfitRange: "500만~800만",
@@ -178,8 +182,9 @@ export const publicListings: PublicListing[] = [
     sizeRange: "25~35평",
     floorType: "1층",
     operationPeriodRange: "3년 이상",
-    summary: "주거와 학교 수요가 함께 있는 생활형 편의점 매물입니다.",
-    highlights: ["생활 상권", "야간 매출", "재고 시스템"],
+    summary:
+      "주거와 학교 수요가 함께 있는 생활형 편의점 매물입니다. 안정적인 반복 매출을 선호하는 창업자에게 적합합니다.",
+    highlights: ["생활 상권", "월간 매출", "재고 시스템"],
     recommendedFor: ["상주 운영", "생활형 상권 선호", "안정 매출 선호"],
     imageUrl:
       "https://images.unsplash.com/photo-1580913428735-bd3c269d6a82?auto=format&fit=crop&w=900&q=80",
@@ -190,7 +195,7 @@ export const publicListings: PublicListing[] = [
     id: "pl-1006",
     rawListingId: "raw-9006",
     publicCode: "JM-2026-0006",
-    title: "광주 북구 뷰티샵 양도양수 매물",
+    title: "광주 북구 뷰티숍 양도양수 매물",
     brandGroup: "개인 브랜드",
     category: "뷰티",
     sido: "광주",
@@ -206,7 +211,8 @@ export const publicListings: PublicListing[] = [
     sizeRange: "10~20평",
     floorType: "2층 이상",
     operationPeriodRange: "2~3년",
-    summary: "예약제 비중이 높은 소형 뷰티 업종 매물입니다.",
+    summary:
+      "예약제 비중이 높은 소형 뷰티 업종 매물입니다. 기술 기반 1인 운영과 저권리금 창업을 검토하기 좋습니다.",
     highlights: ["예약 운영", "권리금 낮음", "고정 고객"],
     recommendedFor: ["기술 창업", "1인 운영", "저권리금 선호"],
     imageUrl:
