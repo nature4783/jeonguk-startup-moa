@@ -14,5 +14,12 @@ export async function GET(request: Request) {
     sort: (searchParams.get("sort") as ListingSort | null) ?? "recommended",
   };
 
-  return Response.json({ data: getPublicListings(filters) });
+  return Response.json(
+    { data: getPublicListings(filters) },
+    {
+      headers: {
+        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600",
+      },
+    },
+  );
 }
