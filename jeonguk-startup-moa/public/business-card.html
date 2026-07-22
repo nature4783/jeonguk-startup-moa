@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>전국창업모아 명함</title>
+    <style>
+      :root {
+        --blue: #0647c7;
+        --blue-deep: #04318d;
+        --aqua: #00f0a8;
+        --ink: #101828;
+        --muted: #667085;
+        --line: #d7e0ee;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #eef3fa;
+        color: var(--ink);
+        font-family:
+          "Pretendard",
+          "Noto Sans KR",
+          "Apple SD Gothic Neo",
+          "Malgun Gothic",
+          Arial,
+          sans-serif;
+      }
+
+      .sheet {
+        display: grid;
+        grid-template-columns: repeat(2, 90mm);
+        gap: 12mm;
+        padding: 16mm;
+      }
+
+      .card {
+        width: 90mm;
+        height: 50mm;
+        position: relative;
+        overflow: hidden;
+        background: #fff;
+        outline: 1px solid var(--line);
+        box-shadow: 0 18px 42px rgba(4, 49, 141, 0.12);
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .front {
+        color: #fff;
+        background:
+          radial-gradient(circle at 78% 24%, rgba(0, 240, 168, 0.18), transparent 19%),
+          linear-gradient(145deg, #0758ec 0%, var(--blue) 45%, var(--blue-deep) 100%);
+      }
+
+      .front::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(122deg, transparent 0 58%, rgba(255, 255, 255, 0.09) 58% 59%, transparent 59%),
+          linear-gradient(122deg, transparent 0 70%, rgba(255, 255, 255, 0.06) 70% 71%, transparent 71%);
+      }
+
+      .front::after {
+        content: "";
+        position: absolute;
+        right: -24mm;
+        bottom: -34mm;
+        width: 74mm;
+        height: 74mm;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .front-inner {
+        position: absolute;
+        inset: 7mm 7.5mm;
+        z-index: 1;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 3mm;
+      }
+
+      .top-chip {
+        width: fit-content;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 999px;
+        padding: 1mm 2.4mm;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 5.5pt;
+        font-weight: 900;
+      }
+
+      .center-brand {
+        align-self: center;
+        display: flex;
+        align-items: center;
+        gap: 3.7mm;
+      }
+
+      .front-logo {
+        width: 17mm;
+        height: 17mm;
+        border-radius: 3.2mm;
+        object-fit: cover;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+      }
+
+      .brand {
+        font-size: 20.5pt;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .tagline {
+        margin-top: 2mm;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 7pt;
+        font-weight: 900;
+      }
+
+      .front-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 2mm;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 6.5pt;
+        font-weight: 900;
+      }
+
+      .front-bottom strong {
+        color: #fff;
+        font-size: 8.5pt;
+      }
+
+      .back {
+        padding: 0;
+      }
+
+      .back-inner {
+        height: 50mm;
+        display: grid;
+        grid-template-columns: 23mm 1fr;
+      }
+
+      .brand-panel {
+        position: relative;
+        height: 100%;
+        min-height: 0;
+        padding: 6.5mm 4.5mm;
+        color: #fff;
+        background: linear-gradient(180deg, var(--blue), var(--blue-deep));
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .brand-panel::after {
+        content: "";
+        position: absolute;
+        left: 4.5mm;
+        bottom: 6.5mm;
+        width: 8.5mm;
+        height: 2px;
+        background: var(--aqua);
+      }
+
+      .panel-logo {
+        width: 12.5mm;
+        height: 12.5mm;
+        border-radius: 2.5mm;
+        object-fit: cover;
+      }
+
+      .panel-text {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 6.6pt;
+        font-weight: 900;
+        line-height: 1.5;
+        padding-bottom: 5mm;
+      }
+
+      .info {
+        position: relative;
+        height: 100%;
+        min-height: 0;
+        padding: 6.5mm 7mm;
+        display: grid;
+        grid-template-rows: auto auto auto;
+        align-content: space-between;
+      }
+
+      .company {
+        color: var(--blue);
+        font-size: 15.4pt;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .role {
+        margin-top: 1.5mm;
+        color: #344054;
+        font-size: 7pt;
+        font-weight: 900;
+      }
+
+      .phone-wrap {
+        padding-block: 3.2mm;
+        border-block: 1px solid var(--line);
+      }
+
+      .phone-label {
+        color: var(--muted);
+        font-size: 6.1pt;
+        font-weight: 900;
+      }
+
+      .phone {
+        margin-top: 1mm;
+        color: var(--ink);
+        font-size: 15.2pt;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .contacts {
+        display: grid;
+        gap: 1.35mm;
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: 12mm 1fr;
+        gap: 2.3mm;
+        align-items: baseline;
+      }
+
+      .label {
+        color: var(--blue);
+        font-size: 5.7pt;
+        font-weight: 900;
+      }
+
+      .value {
+        color: #344054;
+        font-size: 6.45pt;
+        font-weight: 800;
+        line-height: 1.16;
+        overflow-wrap: anywhere;
+      }
+
+      .print-note {
+        position: fixed;
+        left: 16px;
+        bottom: 14px;
+        color: #607089;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .download-bar {
+        position: fixed;
+        left: 50%;
+        top: 18px;
+        z-index: 10;
+        display: flex;
+        gap: 8px;
+        transform: translateX(-50%);
+      }
+
+      .download-bar a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 38px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--blue);
+        color: #fff;
+        padding: 0 15px;
+        box-shadow: 0 10px 24px rgba(4, 49, 141, 0.18);
+        cursor: pointer;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .download-bar a.secondary {
+        background: #fff;
+        color: var(--blue);
+        outline: 1px solid var(--line);
+      }
+
+      .download-bar a:active {
+        transform: translateY(1px);
+      }
+
+      @media print {
+        @page {
+          size: A4;
+          margin: 12mm;
+        }
+
+        body {
+          background: #fff;
+        }
+
+        .sheet {
+          padding: 0;
+          gap: 8mm;
+        }
+
+        .card {
+          box-shadow: none;
+          break-inside: avoid;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
+        .print-note {
+          display: none;
+        }
+
+        .download-bar {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="download-bar" aria-label="명함 이미지 다운로드">
+      <a href="/downloads/jeonguk-startup-moa-front.png" download>
+        앞면 PNG
+      </a>
+      <a href="/downloads/jeonguk-startup-moa-back.png" download>
+        뒷면 PNG
+      </a>
+      <a class="secondary" href="/downloads/jeonguk-startup-moa-business-card.png" download>
+        전체 PNG
+      </a>
+    </div>
+
+    <main class="sheet" aria-label="전국창업모아 명함">
+      <section class="card front" aria-label="명함 앞면">
+        <div class="front-inner">
+          <p class="top-chip">FRANCHISE CONSULTING</p>
+
+          <div class="center-brand">
+            <img class="front-logo" src="/brand/brand-icon.png" alt="" />
+            <div>
+              <h1 class="brand">전국창업모아</h1>
+              <p class="tagline">창업 · 양도양수 상담</p>
+            </div>
+          </div>
+
+          <div class="front-bottom">
+            <span>대표문의</span>
+            <strong>010-9478-2113</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="card back" aria-label="명함 뒷면">
+        <div class="back-inner">
+          <aside class="brand-panel">
+            <img class="panel-logo" src="/brand/brand-icon.png" alt="" />
+            <p class="panel-text">창업<br />양도양수<br />상담</p>
+          </aside>
+
+          <div class="info">
+            <div>
+              <h2 class="company">전국창업모아</h2>
+              <p class="role">창업 상담 · 양도양수</p>
+            </div>
+
+            <div class="phone-wrap">
+              <p class="phone-label">대표문의</p>
+              <p class="phone">010-9478-2113</p>
+            </div>
+
+            <div class="contacts">
+              <div class="contact">
+                <span class="label">KAKAO</span>
+                <span class="value">nature031</span>
+              </div>
+              <div class="contact">
+                <span class="label">SITE</span>
+                <span class="value">changupmoa.com</span>
+              </div>
+              <div class="contact">
+                <span class="label">BLOG</span>
+                <span class="value">blog.naver.com/nature031</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="print-note">인쇄 설정: A4, 배경 그래픽 켜기, 실제 크기 또는 100%</div>
+
+  </body>
+</html>

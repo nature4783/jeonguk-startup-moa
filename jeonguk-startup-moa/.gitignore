@@ -18,7 +18,10 @@
 /out/
 
 # production
-/build
+/build/*
+!/build/sites-vite-plugin.ts
+/dist
+/.wrangler
 
 # misc
 .DS_Store
@@ -36,6 +39,11 @@ yarn-error.log*
 
 # vercel
 .vercel
+.vercel*/
+
+# local hosting links and restore archives
+/.openai/hosting.json
+/outputs/
 
 # typescript
 *.tsbuildinfo
