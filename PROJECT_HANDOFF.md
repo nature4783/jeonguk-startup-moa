@@ -113,15 +113,46 @@ robots와 sitemap은 관리자, 로그인, API, 개인 영역을 검색에서 �
 
 ## 13. Mac 이전
 
-1. Node.js 22.13 이상, Git, Python 3을 설치한다.
-2. Git 루트를 복제하고 `cd jeonguk-startup-moa`로 이동한다.
-3. `npm ci`를 실행한다.
-4. 로컬 전용 Vinext/Sites 파일의 공식 복원 경로를 결정한다. 출처를 모르면 작업을 중단하고 Windows 원본/호스팅 설정을 확인한다.
-5. 승인된 비밀 채널로 `.env`를 새로 만든다.
-6. `npm run build`와 사용 가능한 lint/test 명령을 실행하고 Worker 로컬 실행을 확인한다.
-7. 상담·즐겨찾기·비교는 UI 확인만으로 완료 처리하지 말고 실제 DB 왕복을 검증한다.
+### 실행 경계
 
-Mac에서 가능한 일은 React/Vinext 코드, 공개 DTO, PWA, Supabase 마이그레이션, 정적 SEO 작업이다. Windows에서 확인할 일은 현재 로컬 전용 빌드 파일의 출처, 기존 브라우저/PWA 설치 상태, 실제 배포 자격 증명과 운영 데이터 연계다. 현재 코드에 Windows 전용 핵심 런타임은 적지만, 깨끗한 복제 재현성은 아직 없다.
+- Windows 원본 PC에서 현재 로컬 전용 파일의 출처와 민감정보 포함 여부를 먼저 확인한다.
+- Mac에서는 Git에 있는 파일만으로 build가 된다고 가정하지 않는다.
+- Windows `.env`, 브라우저 프로필, 배포 토큰을 복사하지 않고 Mac/배포 플랫폼에서 새로 발급·구성한다.
+
+아래 명령은 Git 접근 권한, Git, Node.js 22.13 이상, npm이 설치된 **Mac Terminal(zsh)** 에서 실행한다. Git 저장소와 앱 폴더 이름이 같으므로 clone 대상 폴더를 `jeonguk-startup-moa-repo`로 구분한다.
+
+```zsh
+test "$(uname -s)" = "Darwin" || { echo "이 블록은 macOS 전용입니다."; exit 1; }
+
+mkdir -p "$HOME/Projects"
+cd "$HOME/Projects"
+git clone --branch agent/macbook-migration-sync-20260721 --single-branch \
+  https://github.com/nature4783/jeonguk-startup-moa.git \
+  jeonguk-startup-moa-repo
+cd jeonguk-startup-moa-repo/jeonguk-startup-moa
+
+node -e 'const [a,b]=process.versions.node.split(".").map(Number); if(a<22 || (a===22 && b<13)){console.error("Node.js 22.13 이상이 필요합니다."); process.exit(1)}'
+npm ci
+
+missing=0
+for file in .openai/hosting.json build/sites-vite-plugin.ts; do
+  if [[ ! -f "$file" ]]; then
+    echo "누락: $file — Windows 원본/호스팅 설정에서 안전하게 복원한 뒤 계속하세요."
+    missing=1
+  fi
+done
+[[ "$missing" -eq 0 ]] || exit 1
+
+npm run lint
+npm run build
+git status --short
+```
+
+현재 두 필수 파일은 Git에 추적되지 않으므로 깨끗한 clone에서는 preflight가 의도적으로 중단된다. Windows 원본에서 파일을 가져오기 전에 비밀값을 검사하고, Git에 강제로 추가하지 않는다. 출처를 확인할 수 없다면 build 설정을 공식적으로 재구성하는 작업이 먼저다.
+
+이 패키지에는 `test` 스크립트가 없다. `npm test`를 실행하지 않는다. 확인 가능한 표준 명령은 `npm run lint`, `npm run build`, 필요 시 `npm run dev`다. 상담·즐겨찾기·비교는 UI 표시만 확인하지 말고 실제 Supabase 왕복이 구현된 뒤 별도로 검증한다.
+
+Mac에서 가능한 일은 React/Vinext 코드, 공개 DTO, PWA, Supabase 마이그레이션, 정적 SEO 작업이다. Windows에서 확인할 일은 로컬 전용 빌드 파일의 출처, 기존 브라우저/PWA 설치 상태, 실제 배포 자격 증명과 운영 데이터 연계다.
 
 ## 14. `jeong-startup-site`와의 통합 가능성
 
